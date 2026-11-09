@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Abhinav Prasad — Freelance Web Developer</title>
+<meta name="description" content="Abhinav Prasad — freelance web developer and ACCA BCom undergraduate turning complex ideas into digital reality through code." />
+<meta name="theme-color" content="#08080f" />
+<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="styles.css" />
+<noscript><style>body.is-intro{overflow:auto;height:auto}.intro,.snap{display:none!important}.topbar{opacity:1!important;pointer-events:auto!important}</style></noscript>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2308080f'/%3E%3Ctext x='50' y='71' font-family='Arial Black, sans-serif' font-size='58' text-anchor='middle' fill='%23f2ede3'%3EAP%3C/text%3E%3C/svg%3E" />
+</head>
+<body class="is-intro" id="top">
+
+  <!-- ============================== BACKGROUND FX ============================== -->
+  <div class="fx" aria-hidden="true">
+    <div class="fx__glow fx__glow--red" data-parallax="0.06"></div>
+    <div class="fx__glow fx__glow--orange" data-parallax="-0.05"></div>
+    <div class="fx__glow fx__glow--magenta" data-parallax="0.09"></div>
+  </div>
+  <div class="halftone" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+  <!-- ============================== CINEMATIC INTRO ============================== -->
+  <section class="intro" id="intro" aria-label="Intro">
+    <div class="intro__bg" aria-hidden="true">
+      <div class="intro__orb"></div>
+      <div class="intro__streaks">
+        <i class="streak streak--1"></i>
+        <i class="streak streak--2"></i>
+        <i class="streak streak--3"></i>
+      </div>
+      <svg class="intro__starburst" viewBox="0 0 300 300">
+        <polygon points="150.0,0.0 159.1,92.7 196.4,7.3 176.3,98.3 238.2,28.6 191.0,109.0 271.4,61.8 201.7,123.7 292.7,103.6 207.3,140.9 300.0,150.0 207.3,159.1 292.7,196.4 201.7,176.3 271.4,238.2 191.0,191.0 238.2,271.4 176.3,201.7 196.4,292.7 159.1,207.3 150.0,300.0 140.9,207.3 103.6,292.7 123.7,201.7 61.8,271.4 109.0,191.0 28.6,238.2 98.3,176.3 7.3,196.4 92.7,159.1 0.0,150.0 92.7,140.9 7.3,103.6 98.3,123.7 28.6,61.8 109.0,109.0 61.8,28.6 123.7,98.3 103.6,7.3 140.9,92.7" />
+      </svg>
+      <div class="intro__scan"></div>
+      <div class="intro__vignette"></div>
+    </div>
+
+    <div class="intro__frame" aria-hidden="true">
+      <span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="intro__hud intro__hud--top" aria-hidden="true">
+      <span class="intro__brand">AP<span>®</span></span>
+      <span class="intro__seq"><i></i> SEQ. 001 — TITLE</span>
+      <span class="intro__hud-right">PORTFOLIO / MMXXVI</span>
+    </div>
+
+    <span class="intro__side intro__side--l" aria-hidden="true">FREELANCE / WEB DEVELOPER</span>
+    <span class="intro__side intro__side--r" aria-hidden="true">INDIA — 20.59°N</span>
+
+    <div class="intro__content">
+      <p class="intro__eyebrow"><i aria-hidden="true"></i> A PORTFOLIO IN FOUR MOVEMENTS</p>
+      <h1 class="intro__name">
+        <span class="intro__line intro__line--one"><span class="intro__word intro__word--sans">Abhinav</span></span>
+        <span class="intro__line intro__line--two"><span class="intro__word intro__word--serif">Prasad</span></span>
+        <svg class="intro__spark spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c1.1 7.6 4.4 10.9 12 12-7.6 1.1-10.9 4.4-12 12-1.1-7.6-4.4-10.9-12-12C7.6 10.9 10.9 7.6 12 0Z"/></svg>
+      </h1>
+      <div class="intro__sub">
+        <span>WEB DEVELOPER</span>
+        <span>ACCA BCOM — YEAR 01</span>
+        <span>OPEN FOR WORK</span>
+      </div>
+      <button class="intro__enter" id="enterBtn" type="button">
+        <span>Enter portfolio</span>
+        <span aria-hidden="true">↗</span>
+      </button>
+    </div>
+
+    <div class="intro__meta">
+      <span>INDIA — 20.59°N / 78.96°E</span>
+      <span class="intro__meta-hint">SCROLL OR CLICK TO ENTER</span>
+      <span>AVAILABLE FOR WORK</span>
+    </div>
+    <div class="intro__loader" aria-hidden="true"><span></span></div>
+  </section>
+  <div class="snap" id="snap" aria-hidden="true"></div>
+
+  <!-- ============================== SITE ============================== -->
+  <div class="site" id="site">
+
+    <header class="topbar" id="topbar">
+      <a class="brand" href="#top" aria-label="Abhinav Prasad, back to top">
+        <span class="brand__mark">AP</span>
+        <span class="brand__sup">©26</span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#about"><span>01</span> About</a>
+        <a href="#projects"><span>02</span> Projects</a>
+        <a href="#contact"><span>03</span> Contact</a>
+      </nav>
+      <div class="status">
+        <i class="status__dot" aria-hidden="true"></i>
+        <span>Open for freelance</span>
+      </div>
+    </header>
+
+    <main>
+
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker__track">
+          <div class="ticker__set">
+            <span>FREELANCE WEB DEVELOPER</span>
+            <svg class="spark" viewBox="0 0 24 24"><path d="M12 0c1.1 7.6 4.4 10.9 12 12-7.6 1.1-10.9 4.4-12 12-1.1-7.6-4.4-10.9-12-12C7.6 10.9 10.9 7.6 12 0Z"/></svg>
+            <span class="ticker__ghost">UI / UX</span>
+            <svg class="spark" viewBox="0 0 24 24"><path d="M12 0c1.1 7.6 4.4 10.9 12 12-7.6 1.1-10.9 4.4-12 12-1.1-7.6-4.4-10.9-12-12C7.6 10.9 10.9 7.6 12 0Z"/></svg>
+            <span>REACT + PYTHON</span>
+            <svg class="spark" viewBox="0 0 24 24"><path d="M12 0c1.1 7.6 4.4 10.9 12 12-7.6 1.1-10.9 4.4-12 12-1.1-7.6-4.4-10.9-12-12C7.6 10.9 10.9 7.6 12 0Z"/></svg>
+            <span class="ticker__ghost">SHIPPING IDEAS</span>
+            <svg class="spark" viewBox="0 0 24 24"><path d="M12 0c1.1 7.6 4.4 10.9 12 12-7.6 1.1-10.9 4.4-12 12-1.1-7.6-4.4-10.9-12-12C7.6 10.9 10.9 7.6 12 0Z"/></svg>
+            <span>ACCA BCOM · YEAR 01</span>
+            <svg class="spark" viewBox="0 0 24 24"><path d="M12 0c1.1 7.6 4.4 10.9 12 12-7.6 1.1-10.9 4.4-12 12-1.1-7.6-4.4-10.9-12-12C7.6 10.9 10.9 7.6 12 0Z"/></svg>
+          </div>
+          <div class="ticker__set">
+            <span>FREELANCE WEB DEVELOPER</span>
+            <svg class="spark" viewBox="0 0 24 24"><path d="M12 0c1.1 7.6 4.4 10.9 12 12-7.6 1.1-10.9 4.4-12 12-1.1-7.6-4.4-10.9-12-12C7.6 10.9 10.9 7.6 12 0Z"/></svg>
+            <span class="ticker__ghost">UI / UX</span>
+            <svg class="spark" viewBox="0 0 24 24"><path d="M12 0c1.1 7.6 4.4 10.9 12 12-7.6 1.1-10.9 4.4-12 12-1.1-7.6-4.4-10.9-12-12C7.6 10.9 10.9 7.6 12 0Z"/></svg>
+            <span>REACT + PYTHON</span>
+            <svg class="spark" viewBox="0 0 24 24"><path d="M12 0c1.1 7.6 4.4 10.9 12 12-7.6 1.1-10.9 4.4-12 12-1.1-7.6-4.4-10.9-12-12C7.6 10.9 10.9 7.6 12 0Z"/></svg>
+            <span class="ticker__ghost">SHIPPING IDEAS</span>
+            <svg class="spark" viewBox="0 0 24 24"><path d="M12 0c1.1 7.6 4.4 10.9 12 12-7.6 1.1-10.9 4.4-12 12-1.1-7.6-4.4-10.9-12-12C7.6 10.9 10.9 7.6 12 0Z"/></svg>
+            <span>ACCA BCOM · YEAR 01</span>
+            <svg class="spark" viewBox="0 0 24 24"><path d="M12 0c1.1 7.6 4.4 10.9 12 12-7.6 1.1-10.9 4.4-12 12-1.1-7.6-4.4-10.9-12-12C7.6 10.9 10.9 7.6 12 0Z"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================== ABOUT ============================== -->
+      <section class="section about" id="about">
+        <div class="rule reveal">
+          <span class="rule__globe" aria-hidden="true">⊕⊕⊕</span>
+          <span class="rule__label">01 / ABOUT</span>
+          <span class="rule__meta">PERSONAL PROFILE</span>
+        </div>
+
+        <div class="about__head">
+          <p class="about__kicker reveal" style="--d:.05s">
+            A TECH ENTHUSIAST<br />WHO SHIPS.
+          </p>
+          <h2 class="about__title display reveal" style="--d:.1s">
+            <span class="mask"><span class="mask__i">ABOUT</span></span>
+            <span class="mask"><span class="mask__i outline">ME</span></span>
+          </h2>
+        </div>
+
+        <div class="about__grid">
+          <div class="about__visual reveal" aria-hidden="true">
+            <svg class="starburst" viewBox="0 0 300 300">
+              <polygon points="150.0,0.0 159.1,92.7 196.4,7.3 176.3,98.3 238.2,28.6 191.0,109.0 271.4,61.8 201.7,123.7 292.7,103.6 207.3,140.9 300.0,150.0 207.3,159.1 292.7,196.4 201.7,176.3 271.4,238.2 191.0,191.0 238.2,271.4 176.3,201.7 196.4,292.7 159.1,207.3 150.0,300.0 140.9,207.3 103.6,292.7 123.7,201.7 61.8,271.4 109.0,191.0 28.6,238.2 98.3,176.3 7.3,196.4 92.7,159.1 0.0,150.0 92.7,140.9 7.3,103.6 98.3,123.7 28.6,61.8 109.0,109.0 61.8,28.6 123.7,98.3 103.6,7.3 140.9,92.7" />
+            </svg>
+            <span class="visual__halo"></span>
+
+            <div class="tablet">
+              <div class="tablet__screen">
+                <div class="tablet__bar">
+                  <span></span><span></span><span></span>
+                  <em>abhinav.js</em>
+                </div>
+                <div class="tablet__code">
+                  <div><span class="c-kw">const</span> <span class="c-var">abhinav</span> <span class="c-pun">= {</span></div>
+                  <div class="i1"><span class="c-prop">role</span><span class="c-pun">:</span> <span class="c-str">"web developer"</span><span class="c-pun">,</span></div>
+                  <div class="i1"><span class="c-prop">stack</span><span class="c-pun">:</span> <span class="c-pun">[</span><span class="c-str">"React"</span><span class="c-pun">,</span> <span class="c-str">"Python"</span><span class="c-pun">],</span></div>
+                  <div class="i1"><span class="c-prop">study</span><span class="c-pun">:</span> <span class="c-str">"ACCA BCom"</span><span class="c-pun">,</span></div>
+                  <div class="i1"><span class="c-prop">status</span><span class="c-pun">:</span> <span class="c-str">"freelancing"</span><span class="c-pun">,</span></div>
+                  <div><span class="c-pun">};</span></div>
+                  <div class="mt"><span class="c-kw">function</span> <span class="c-fn">build</span><span class="c-pun">(</span><span class="c-var">idea</span><span class="c-pun">) {</span></div>
+                  <div class="i1"><span class="c-kw">return</span> <span class="c-fn">ship</span><span class="c-pun">(</span><span class="c-var">idea</span><span class="c-pun">, {</span> <span class="c-prop">care</span><span class="c-pun">:</span> <span class="c-bool">true</span> <span class="c-pun">});</span></div>
+                  <div><span class="c-pun">}</span></div>
+                  <div class="c-cursor"><span></span></div>
+                </div>
+              </div>
+              <span class="tablet__cam"></span>
+              <span class="tablet__edge"></span>
+            </div>
+
+            <div class="stylus"><span class="stylus__tip"></span></div>
+
+            <div class="chip chip--react">
+              <svg viewBox="0 0 24 24" class="tech tech--react"><circle cx="12" cy="12" r="2" fill="currentColor"/><ellipse cx="12" cy="12" rx="10" ry="4.1" fill="none" stroke="currentColor" stroke-width="1.1"/><ellipse cx="12" cy="12" rx="10" ry="4.1" fill="none" stroke="currentColor" stroke-width="1.1" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4.1" fill="none" stroke="currentColor" stroke-width="1.1" transform="rotate(120 12 12)"/></svg>
+              <span>REACT</span>
+            </div>
+            <div class="chip chip--python">
+              <svg viewBox="0 0 24 24" class="tech tech--python"><path d="M12 2.4c-3 0-4.6 1.2-4.6 3.2v2.6h4.9v1H5.6c-2.1 0-3.3 1.3-3.3 4.3s1.1 4.3 3.2 4.3h1.8v-2.8c0-2.2 1.6-3.8 3.9-3.8h3.6c1.9 0 3.2-1.3 3.2-3.1V5.6c0-2-1.6-3.2-3.6-3.2H12Z" fill="currentColor" opacity=".95"/><path d="M12 21.6c3 0 4.6-1.2 4.6-3.2v-2.6h-4.9v-1h6.7c2.1 0 3.3-1.3 3.3-4.3s-1.1-4.3-3.2-4.3h-1.8v2.8c0 2.2-1.6 3.8-3.9 3.8h-3.6c-1.9 0-3.2 1.3-3.2 3.1v3.5c0 2 1.6 3.2 3.6 3.2H12Z" fill="currentColor" opacity=".55"/></svg>
+              <span>PYTHON</span>
+            </div>
+            <div class="chip chip--tailwind">
+              <svg viewBox="0 0 24 24" class="tech tech--tailwind"><path d="M12 4.8c-3.24 0-5.26 1.62-6.07 4.86 1.21-1.62 2.63-2.23 4.25-1.82.92.23 1.58.9 2.31 1.64 1.19 1.21 2.57 2.6 5.58 2.6 3.24 0 5.26-1.62 6.07-4.86-1.21 1.62-2.63 2.23-4.25 1.82-.92-.23-1.58-.9-2.31-1.64C16.39 6.19 15.01 4.8 12 4.8Zm-6.07 7.28c-3.24 0-5.26 1.62-6.07 4.86 1.21-1.62 2.63-2.23 4.25-1.82.92.23 1.58.9 2.31 1.64 1.19 1.21 2.57 2.6 5.58 2.6 3.24 0 5.26-1.62 6.07-4.86-1.21 1.62-2.63 2.23-4.25 1.82-.92-.23-1.58-.9-2.31-1.64-1.19-1.21-2.57-2.6-5.58-2.6Z" fill="currentColor"/></svg>
+              <span>TAILWIND</span>
+            </div>
+            <div class="chip chip--supabase">
+              <svg viewBox="0 0 24 24" class="tech tech--supabase"><path d="M13.6 2 3.9 13.7h7.1L10.4 22l9.7-11.9h-7.1L13.6 2Z" fill="currentColor"/></svg>
+              <span>SUPABASE</span>
+            </div>
+            <div class="chip chip--vscode">
+              <svg viewBox="0 0 24 24" class="tech tech--vscode"><path d="M17.9 2.1 9.6 10.2 5.3 6.9 2.6 8.3v7.4l2.7 1.4 4.3-3.3 8.3 8.1 4-2V4.1l-4-2Zm-.2 5.4v9l-5.4-4.5 5.4-4.5Z" fill="currentColor"/></svg>
+              <span>VS CODE</span>
+            </div>
+          </div>
+
+          <div class="about__copy">
+            <div class="about__id reveal" style="--d:.1s">
+              <div class="avatar">
+                <span class="avatar__monogram" aria-hidden="true">AP</span>
+                <img id="portrait" alt="Portrait of Abhinav Prasad" />
+              </div>
+              <div class="about__id-text">
+                <p class="about__name">ABHINAV PRASAD</p>
+                <p class="about__role">WEB DEVELOPER / STUDENT</p>
+              </div>
+            </div>
+
+            <p class="about__text reveal" style="--d:.15s">
+              <span class="about__lead">Hi, I’m Abhinav.</span> A tech enthusiast and freelance web developer. I’m currently in my 1st year as an ACCA BCom undergraduate, turning complex ideas into digital reality through code.
+            </p>
+
+            <dl class="about__facts reveal" style="--d:.2s">
+              <div><dt>BASED IN</dt><dd>India — IST</dd></div>
+              <div><dt>STUDYING</dt><dd>ACCA BCom, Year 01</dd></div>
+              <div><dt>FOCUS</dt><dd>Web · UI · Brand</dd></div>
+              <div><dt>STATUS</dt><dd class="live">Open for freelance</dd></div>
+            </dl>
+
+            <a class="link-arrow reveal" href="#projects" style="--d:.25s">
+              <span>See the selected work</span>
+              <span class="link-arrow__icon" aria-hidden="true">↘</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="stats reveal">
+          <div class="stats__cell"><span class="stats__num">04</span><span class="stats__label">Featured builds</span></div>
+          <div class="stats__cell"><span class="stats__num">01<sup>st</sup></span><span class="stats__label">Year undergraduate</span></div>
+          <div class="stats__cell"><span class="stats__num">24<sup>h</sup></span><span class="stats__label">Average reply time</span></div>
+          <div class="stats__cell stats__cell--wide"><span class="stats__label">Always learning. Always shipping.</span></div>
+        </div>
+      </section>
+
+      <!-- ============================== PROJECTS ============================== -->
+      <section class="section projects" id="projects">
+        <div class="rule reveal">
+          <span class="rule__globe" aria-hidden="true">⊕⊕⊕</span>
+          <span class="rule__label">02 / PROJECTS</span>
+          <span class="rule__meta">SELECTED WORK — 2025 / 26</span>
+        </div>
+
+        <div class="projects__head">
+          <h2 class="projects__title display reveal">
+            <span class="mask"><span class="mask__i">PROJECTS</span></span>
+          </h2>
+          <p class="projects__intro reveal" style="--d:.1s">
+            Web experiences built with an obsession for type, motion and the tiny details.
+          </p>
+        </div>
+
+        <div class="projects__bar reveal">
+          <div class="projects__track"><span id="carProgress"></span></div>
+          <div class="projects__nav">
+            <button class="car-btn" id="prevBtn" type="button" aria-label="Previous project">←</button>
+            <span class="projects__count" id="carCount">01 / 04</span>
+            <button class="car-btn" id="nextBtn" type="button" aria-label="Next project">→</button>
+          </div>
+        </div>
+
+        <div class="carousel reveal" id="carousel" tabindex="0" aria-label="Project carousel">
+
+          <article class="card">
+            <a class="card__media" href="mailto:hello@abhinavprasad.dev?subject=Case%20study%20request%3A%20Solara" aria-label="Request the Solara case study">
+              <div class="art art--solara">
+                <span class="art__grain" aria-hidden="true"></span>
+                <span class="art__idx">(01)</span>
+                <span class="art__sun" aria-hidden="true"></span>
+                <span class="art__big">SOLARA</span>
+                <span class="art__stamp">RENEWABLE / COMMERCE</span>
+                <span class="art__browser"><i></i>solara.energy</span>
+              </div>
+              <span class="card__view">Request case study <b>↗</b></span>
+            </a>
+            <div class="card__meta">
+              <div>
+                <h3 class="card__title">SOLARA</h3>
+                <p class="card__desc">A conversion-first storefront for a rooftop solar startup — product configurator, instant quote flow and a warm editorial identity.</p>
+              </div>
+              <span class="card__year">2026</span>
+            </div>
+            <ul class="card__tags"><li>Next.js</li><li>Tailwind</li><li>Stripe</li></ul>
+          </article>
+
+          <article class="card">
+            <a class="card__media" href="mailto:hello@abhinavprasad.dev?subject=Case%20study%20request%3A%20Pulse" aria-label="Request the Pulse case study">
+              <div class="art art--pulse">
+                <span class="art__grain" aria-hidden="true"></span>
+                <span class="art__idx">(02)</span>
+                <svg class="art__chart" viewBox="0 0 420 220" preserveAspectRatio="none" aria-hidden="true">
+                  <g stroke="rgba(242,237,227,.22)" stroke-width="1">
+                    <line x1="0" y1="40" x2="420" y2="40"/><line x1="0" y1="90" x2="420" y2="90"/>
+                    <line x1="0" y1="140" x2="420" y2="140"/><line x1="0" y1="190" x2="420" y2="190"/>
+                  </g>
+                  <path d="M0 178 L48 160 L92 168 L136 120 L180 132 L224 86 L268 96 L312 54 L356 64 L420 22 L420 220 L0 220 Z" fill="url(#pulseFill)"/>
+                  <path d="M0 178 L48 160 L92 168 L136 120 L180 132 L224 86 L268 96 L312 54 L356 64 L420 22" fill="none" stroke="#ff8a3d" stroke-width="2.5"/>
+                  <circle cx="356" cy="64" r="5" fill="#ff6a12"/>
+                  <defs><linearGradient id="pulseFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff2f8e" stop-opacity=".55"/><stop offset="1" stop-color="#ff2f8e" stop-opacity="0"/></linearGradient></defs>
+                </svg>
+                <span class="art__big art__big--outline">PULSE</span>
+                <span class="art__stat">98.4<em>%</em></span>
+                <span class="art__stamp">SAAS / ANALYTICS</span>
+              </div>
+              <span class="card__view">Request case study <b>↗</b></span>
+            </a>
+            <div class="card__meta">
+              <div>
+                <h3 class="card__title">PULSE</h3>
+                <p class="card__desc">A real-time analytics dashboard with custom charting, role-based workspaces and queries that answer before you blink.</p>
+              </div>
+              <span class="card__year">2025</span>
+            </div>
+            <ul class="card__tags"><li>React</li><li>Python</li><li>Supabase</li></ul>
+          </article>
+
+          <article class="card">
+            <a class="card__media" href="mailto:hello@abhinavprasad.dev?subject=Case%20study%20request%3A%20Nocturne" aria-label="Request the Nocturne case study">
+              <div class="art art--nocturne">
+                <span class="art__grain" aria-hidden="true"></span>
+                <span class="art__idx">(03)</span>
+                <span class="art__disc" aria-hidden="true"></span>
+                <span class="art__big">NOCTURNE</span>
+                <span class="art__ring" aria-hidden="true"></span>
+                <span class="art__stamp">MUSIC / IDENTITY</span>
+                <span class="art__script">sound in motion</span>
+              </div>
+              <span class="card__view">Request case study <b>↗</b></span>
+            </a>
+            <div class="card__meta">
+              <div>
+                <h3 class="card__title">NOCTURNE</h3>
+                <p class="card__desc">A kinetic identity and label microsite built around audio-reactive typography, record drops and late-night energy.</p>
+              </div>
+              <span class="card__year">2025</span>
+            </div>
+            <ul class="card__tags"><li>Astro</li><li>GSAP</li><li>Sanity</li></ul>
+          </article>
+
+          <article class="card">
+            <a class="card__media" href="mailto:hello@abhinavprasad.dev?subject=Case%20study%20request%3A%20Atlas" aria-label="Request the Atlas case study">
+              <div class="art art--atlas">
+                <span class="art__grain" aria-hidden="true"></span>
+                <span class="art__idx">(04)</span>
+                <svg class="art__globe" viewBox="0 0 300 300" aria-hidden="true">
+                  <circle cx="150" cy="150" r="112" fill="none" stroke="currentColor" stroke-width="1.2"/>
+                  <ellipse cx="150" cy="150" rx="112" ry="112" fill="none" stroke="currentColor" stroke-width=".8" opacity=".25" transform="rotate(24 150 150)"/>
+                  <ellipse cx="150" cy="150" rx="78" ry="112" fill="none" stroke="currentColor" stroke-width="1"/>
+                  <ellipse cx="150" cy="150" rx="38" ry="112" fill="none" stroke="currentColor" stroke-width="1"/>
+                  <ellipse cx="150" cy="150" rx="4" ry="112" fill="none" stroke="currentColor" stroke-width="1"/>
+                  <ellipse cx="150" cy="150" rx="112" ry="78" fill="none" stroke="currentColor" stroke-width="1"/>
+                  <ellipse cx="150" cy="150" rx="112" ry="38" fill="none" stroke="currentColor" stroke-width="1"/>
+                  <ellipse cx="150" cy="150" rx="112" ry="4" fill="none" stroke="currentColor" stroke-width="1"/>
+                  <circle cx="213" cy="112" r="5" fill="#ff6a12"/>
+                  <circle cx="94" cy="184" r="4" fill="#f2ede3"/>
+                </svg>
+                <span class="art__big">ATLAS</span>
+                <span class="art__stamp">TRAVEL / PRODUCT</span>
+                <span class="art__browser"><i></i>atlas.travel</span>
+              </div>
+              <span class="card__view">Request case study <b>↗</b></span>
+            </a>
+            <div class="card__meta">
+              <div>
+                <h3 class="card__title">ATLAS</h3>
+                <p class="card__desc">A map-first travel planner that turns a messy folder of saved places into calm, day-by-day itineraries.</p>
+              </div>
+              <span class="card__year">2025</span>
+            </div>
+            <ul class="card__tags"><li>Next.js</li><li>Mapbox</li><li>Supabase</li></ul>
+          </article>
+
+        </div>
+
+        <p class="projects__note reveal">More builds on request — including client work under NDA. <a href="mailto:hello@abhinavprasad.dev?subject=Project%20enquiry">Ask for the full list ↗</a></p>
+      </section>
+
+      <!-- ============================== CONTACT ============================== -->
+      <section class="section contact" id="contact">
+        <div class="rule reveal">
+          <span class="rule__globe" aria-hidden="true">⊕⊕⊕</span>
+          <span class="rule__label">03 / CONTACT</span>
+          <span class="rule__meta">LET’S BUILD SOMETHING</span>
+        </div>
+
+        <div class="contact__stage">
+          <h2 class="contact__title display reveal" aria-label="Contact me">
+            <span class="mask"><span class="mask__i">CONTACT</span></span>
+            <span class="mask"><span class="mask__i contact__me">ME</span></span>
+          </h2>
+          <svg class="contact__spark spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c1.1 7.6 4.4 10.9 12 12-7.6 1.1-10.9 4.4-12 12-1.1-7.6-4.4-10.9-12-12C7.6 10.9 10.9 7.6 12 0Z"/></svg>
+        </div>
+
+        <div class="hairline reveal" aria-hidden="true"></div>
+
+        <div class="contact__body">
+          <p class="contact__lead reveal">
+            Have a project, a rough idea, or just a question?<br />
+            My inbox is always open.
+          </p>
+          <div class="contact__actions reveal" style="--d:.1s">
+            <a class="pill" href="mailto:hello@abhinavprasad.dev">
+              <span class="pill__label">hello@abhinavprasad.dev</span>
+              <span class="pill__arrow" aria-hidden="true">↗</span>
+            </a>
+            <button class="copy" id="copyBtn" type="button" data-email="hello@abhinavprasad.dev">
+              <span class="copy__text">Copy email</span>
+            </button>
+          </div>
+          <p class="contact__availability reveal" style="--d:.15s">
+            <i aria-hidden="true"></i> Currently taking on freelance projects for 2026
+          </p>
+        </div>
+
+        <div class="hairline" aria-hidden="true"></div>
+
+        <footer class="footer">
+          <span>© 2026 ABHINAV PRASAD</span>
+          <span class="footer__mid">DESIGNED &amp; BUILT BY ME</span>
+          <span>LOCAL TIME — <span id="clock">--:--</span> IST</span>
+          <a href="#top">BACK TO TOP ↑</a>
+        </footer>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
