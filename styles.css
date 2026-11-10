@@ -163,31 +163,11 @@ ul { padding: 0; list-style: none; }
   place-items: center;
   overflow: hidden;
   background: var(--bg);
-  clip-path: inset(0 0 0 0);
-  transition: clip-path 1.05s var(--ease-snap);
+  transform: translateY(0);
+  transition: transform 1.05s var(--ease-snap);
+  will-change: transform;
 }
-.intro.is-out { clip-path: inset(0 0 100% 0); }
-.intro.is-out .intro__content {
-  opacity: 0;
-  transform: scale(1.09);
-  filter: blur(14px);
-  transition: opacity .5s ease, transform .85s var(--ease-snap), filter .7s ease;
-}
-.intro.is-out .cinema-title__line {
-  opacity: 0;
-  transform: perspective(700px) rotateX(-42deg) translateY(-22px) scale(.94);
-  filter: blur(8px);
-  transition: opacity .28s ease, transform .62s var(--ease-snap), filter .4s ease;
-}
-.intro.is-out .cinema-title__line:nth-child(2) { transition-delay: .06s; }
-.intro.is-out .intro__hud,
-.intro.is-out .intro__side,
-.intro.is-out .intro__meta,
-.intro.is-out .intro__frame,
-.intro.is-out .intro__bg {
-  opacity: 0;
-  transition: opacity .45s ease;
-}
+.intro.is-out { transform: translateY(-100%); }
 
 /* background plate */
 .intro__bg {
