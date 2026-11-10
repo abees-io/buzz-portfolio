@@ -1821,3 +1821,19 @@ html:not(.js) .mask__i { transform: none; }
   background: hsl(var(--scroll-hue) 100% 56%);
   box-shadow: 0 0 10px 2px hsl(var(--scroll-hue) 100% 56% / .62);
 }
+
+@media (max-width: 640px) {
+  .intro__content { width: 100%; padding-inline: var(--pad); text-align: center; }
+  .intro__name--cinema { width: 100%; margin-inline: auto; }
+  .intro__name--cinema .cinema-title { justify-items: center; }
+}
+
+@media (max-width: 640px) {
+  .intro__content { box-sizing: border-box; }
+  .intro__name--cinema { box-sizing: border-box; }
+}
+
+@media (max-width: 640px) {
+  .intro__content { width: calc(100% + 2 * var(--pad)); margin-inline: calc(-1 * var(--pad)); }
+}
+
