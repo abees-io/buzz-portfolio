@@ -6,7 +6,6 @@
 
   const body = document.body;
   const intro = document.getElementById('intro');
-  const enterBtn = document.getElementById('enterBtn');
   const snap = document.getElementById('snap');
   const topbar = document.getElementById('topbar');
   const progressBar = document.getElementById('progressBar');
@@ -84,8 +83,6 @@
     });
   };
 
-  if (enterBtn) enterBtn.addEventListener('click', finishIntro);
-
   window.addEventListener('wheel', (e) => {
     if (!introDone && e.deltaY > 0) finishIntro();
   }, { passive: true });
@@ -99,7 +96,7 @@
     if (['Enter', ' ', 'Escape', 'ArrowDown', 'PageDown'].includes(e.key)) finishIntro();
   });
 
-  autoTimer = window.setTimeout(finishIntro, reduceMotion ? 2400 : 6200);
+  autoTimer = window.setTimeout(finishIntro, reduceMotion ? 1800 : 5600);
 
   /* -----------------------------------------------------------
      Scroll: progress, header, parallax
@@ -110,8 +107,16 @@
     scrollRaf = requestAnimationFrame(() => {
       const y = window.scrollY || 0;
       const max = document.documentElement.scrollHeight - window.innerHeight;
-      if (progressBar) progressBar.style.transform = `scaleX(${max > 0 ? Math.min(y / max, 1) : 0})`;
+      const progress = max > 0 ? Math.min(y / max, 1) : 0;
+      if (progressBar) progressBar.style.transform = `scaleX(${progress})`;
       if (topbar) topbar.classList.toggle('is-scrolled', y > 24);
+
+      // Move the accent through the site's existing orange -> magenta range.
+      // The hue is intentionally subtle so the page still feels like one system.
+      const hue = Math.round(24 + progress * 304);
+      document.documentElement.style.setProperty('--scroll-hue', hue);
+      document.documentElement.style.setProperty('--scroll-progress', progress.toFixed(3));
+      document.documentElement.style.setProperty('--scroll-percent', `${(progress * 100).toFixed(2)}%`);
 
       document.querySelectorAll('[data-parallax]').forEach((el) => {
         const speed = parseFloat(el.dataset.parallax) || 0;

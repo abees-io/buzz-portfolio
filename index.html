@@ -7,6 +7,9 @@
 <meta name="description" content="Abhinav Prasad — freelance web developer and ACCA BCom undergraduate turning complex ideas into digital reality through code." />
 <meta name="theme-color" content="#08080f" />
 <script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
 <noscript><style>body.is-intro{overflow:auto;height:auto}.intro,.snap{display:none!important}.topbar{opacity:1!important;pointer-events:auto!important}</style></noscript>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2308080f'/%3E%3Ctext x='50' y='71' font-family='Arial Black, sans-serif' font-size='58' text-anchor='middle' fill='%23f2ede3'%3EAP%3C/text%3E%3C/svg%3E" />
@@ -26,15 +29,11 @@
   <!-- ============================== CINEMATIC INTRO ============================== -->
   <section class="intro" id="intro" aria-label="Intro">
     <div class="intro__bg" aria-hidden="true">
-      <div class="intro__orb"></div>
-      <div class="intro__streaks">
-        <i class="streak streak--1"></i>
-        <i class="streak streak--2"></i>
-        <i class="streak streak--3"></i>
-      </div>
-      <svg class="intro__starburst" viewBox="0 0 300 300">
-        <polygon points="150.0,0.0 159.1,92.7 196.4,7.3 176.3,98.3 238.2,28.6 191.0,109.0 271.4,61.8 201.7,123.7 292.7,103.6 207.3,140.9 300.0,150.0 207.3,159.1 292.7,196.4 201.7,176.3 271.4,238.2 191.0,191.0 238.2,271.4 176.3,201.7 196.4,292.7 159.1,207.3 150.0,300.0 140.9,207.3 103.6,292.7 123.7,201.7 61.8,271.4 109.0,191.0 28.6,238.2 98.3,176.3 7.3,196.4 92.7,159.1 0.0,150.0 92.7,140.9 7.3,103.6 98.3,123.7 28.6,61.8 109.0,109.0 61.8,28.6 123.7,98.3 103.6,7.3 140.9,92.7" />
-      </svg>
+      <div class="fx__glow fx__glow--red"></div>
+      <div class="fx__glow fx__glow--orange"></div>
+      <div class="fx__glow fx__glow--magenta"></div>
+      <div class="halftone intro__halftone"></div>
+      <div class="grain intro__grain"></div>
       <div class="intro__scan"></div>
       <div class="intro__vignette"></div>
     </div>
@@ -54,25 +53,21 @@
 
     <div class="intro__content">
       <p class="intro__eyebrow"><i aria-hidden="true"></i> A PORTFOLIO IN FOUR MOVEMENTS</p>
-      <h1 class="intro__name">
-        <span class="intro__line intro__line--one"><span class="intro__word intro__word--sans">Abhinav</span></span>
-        <span class="intro__line intro__line--two"><span class="intro__word intro__word--serif">Prasad</span></span>
-        <svg class="intro__spark spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c1.1 7.6 4.4 10.9 12 12-7.6 1.1-10.9 4.4-12 12-1.1-7.6-4.4-10.9-12-12C7.6 10.9 10.9 7.6 12 0Z"/></svg>
+      <h1 class="intro__name intro__name--cinema" aria-label="Abhinav Prasad">
+        <span class="cinema-title" aria-hidden="true">
+          <span class="cinema-title__line glitch-text" data-text="ABHINAV">ABHINAV</span>
+          <span class="cinema-title__line glitch-text" data-text="PRASAD">PRASAD</span>
+        </span>
       </h1>
       <div class="intro__sub">
         <span>WEB DEVELOPER</span>
         <span>ACCA BCOM — YEAR 01</span>
         <span>OPEN FOR WORK</span>
       </div>
-      <button class="intro__enter" id="enterBtn" type="button">
-        <span>Enter portfolio</span>
-        <span aria-hidden="true">↗</span>
-      </button>
     </div>
 
     <div class="intro__meta">
       <span>INDIA — 20.59°N / 78.96°E</span>
-      <span class="intro__meta-hint">SCROLL OR CLICK TO ENTER</span>
       <span>AVAILABLE FOR WORK</span>
     </div>
     <div class="intro__loader" aria-hidden="true"><span></span></div>
