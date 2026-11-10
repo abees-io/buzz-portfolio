@@ -8,7 +8,6 @@
   const intro = document.getElementById('intro');
   const snap = document.getElementById('snap');
   const topbar = document.getElementById('topbar');
-  const progressBar = document.getElementById('progressBar');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -108,7 +107,6 @@
       const y = window.scrollY || 0;
       const max = document.documentElement.scrollHeight - window.innerHeight;
       const progress = max > 0 ? Math.min(y / max, 1) : 0;
-      if (progressBar) progressBar.style.transform = `scaleX(${progress})`;
       if (topbar) topbar.classList.toggle('is-scrolled', y > 24);
 
       // Move the accent through the site's existing orange -> magenta range.
@@ -250,21 +248,6 @@
         copyBtn.classList.remove('is-copied');
       }, 2200);
     });
-  }
-
-  /* -----------------------------------------------------------
-     Portrait (drop your photo at assets/portrait.jpg)
-     ----------------------------------------------------------- */
-  const portraitImg = document.getElementById('portrait');
-  if (portraitImg) {
-    const probe = new Image();
-    probe.onload = () => {
-      if (!probe.naturalWidth) return;
-      portraitImg.src = 'assets/portrait.jpg';
-      const frame = portraitImg.closest('.avatar');
-      if (frame) frame.classList.add('has-photo');
-    };
-    probe.src = 'assets/portrait.jpg';
   }
 
   /* -----------------------------------------------------------
