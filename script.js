@@ -79,6 +79,11 @@
     requestAnimationFrame(() => {
       revealInView();
       fitContactTitle();
+
+      /* --- 3D Torch Light Cinema Reveal --- */
+      if (!reduceMotion) {
+        initTorchLightAnimation();
+      }
     });
   };
 
@@ -290,4 +295,147 @@
   window.addEventListener('load', fitContactTitle);
 
   revealInView();
+
+  /* -----------------------------------------------------------
+     3D Torch Light Cinema Animation
+     Sweeps a 3D flashlight with volumetric beam across ABOUT ME
+     ----------------------------------------------------------- */
+  function initTorchLightAnimation() {
+    const aboutHead = document.querySelector('.about__head');
+    const headContent = document.getElementById('aboutHeadContent');
+    const glow = document.getElementById('flashlightGlow');
+    if (!aboutHead || !headContent) return;
+
+    const title = aboutHead.querySelector('.about__title');
+    const kicker = aboutHead.querySelector('.about__kicker');
+
+    if (title) title.classList.add('is-in');
+    if (kicker) kicker.classList.add('is-in');
+
+    function getBounds() {
+      const rect = aboutHead.getBoundingClientRect();
+      const cRect = headContent.getBoundingClientRect();
+      return {
+        centerX: (cRect.left - rect.left) + cRect.width * 0.5,
+        centerY: (cRect.top - rect.top) + cRect.height * 0.5,
+        width: cRect.width,
+        height: cRect.height,
+        rect: rect
+      };
+    }
+
+    // Direct synchronous mask update - whatever the flashlight touches reveals instantly
+    function setLightPosition(x, y, radius, opacity) {
+      headContent.style.setProperty('--light-x', x.toFixed(1) + 'px');
+      headContent.style.setProperty('--light-y', y.toFixed(1) + 'px');
+      headContent.style.setProperty('--light-radius', radius.toFixed(1) + 'px');
+
+      if (glow) {
+        glow.style.setProperty('--light-x', x.toFixed(1) + 'px');
+        glow.style.setProperty('--light-y', y.toFixed(1) + 'px');
+        glow.style.setProperty('--light-opacity', opacity.toFixed(2));
+      }
+    }
+
+    let userInteracted = false;
+    let autoTimer = null;
+
+    // Intro orbit sweep to hint to the user where the light is
+    const duration = 2400; // ms
+    let startTime = null;
+
+    function autoSweep(timestamp) {
+      if (userInteracted) return;
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      const b = getBounds();
+      // Orbit around the center of the heading
+      const angle = (Math.PI * 1.0) + (progress * Math.PI * 2);
+      const rx = b.width * 0.36;
+      const ry = Math.max(b.height * 0.42, 60);
+
+      const x = b.centerX + Math.cos(angle) * rx;
+      const y = b.centerY + Math.sin(angle) * ry;
+
+      setLightPosition(x, y, 140, 0.95);
+
+      if (progress < 1 && !userInteracted) {
+        requestAnimationFrame(autoSweep);
+      } else if (!userInteracted) {
+        // Idle gentle pulse waiting for cursor
+        startIdleFloat();
+      }
+    }
+
+    let idleAnimId = null;
+    function startIdleFloat() {
+      if (userInteracted) return;
+      let idleStart = null;
+      function idleLoop(timestamp) {
+        if (userInteracted) return;
+        if (!idleStart) idleStart = timestamp;
+        const t = (timestamp - idleStart) / 1000;
+        const b = getBounds();
+        const x = b.centerX + Math.sin(t * 1.4) * (b.width * 0.28);
+        const y = b.centerY + Math.cos(t * 1.8) * 25;
+        const r = 135 + Math.sin(t * 3) * 12;
+        setLightPosition(x, y, r, 0.9);
+        idleAnimId = requestAnimationFrame(idleLoop);
+      }
+      idleAnimId = requestAnimationFrame(idleLoop);
+    }
+
+    // Direct cursor handler
+    function onPointerMove(clientX, clientY) {
+      userInteracted = true;
+      if (idleAnimId) cancelAnimationFrame(idleAnimId);
+
+      const rect = aboutHead.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+
+      // Check if cursor is over or near the heading
+      const padding = 110;
+      const isInside = (
+        clientX >= rect.left - padding &&
+        clientX <= rect.right + padding &&
+        clientY >= rect.top - padding &&
+        clientY <= rect.bottom + padding
+      );
+
+      if (!isInside) {
+        // Fade light out when leaving the area
+        if (glow) glow.style.setProperty('--light-opacity', '0');
+        return;
+      }
+
+      // Inside: Reveal instantly with crisp falloff
+      setLightPosition(x, y, 155, 1.0);
+    }
+
+    window.addEventListener('mousemove', (e) => {
+      onPointerMove(e.clientX, e.clientY);
+    }, { passive: true });
+
+    // Mobile touchstart & touchmove support
+    window.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches[0]) {
+        onPointerMove(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches && e.touches[0]) {
+        onPointerMove(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+
+    // Start introductory float 350ms after intro
+    setTimeout(() => {
+      requestAnimationFrame(autoSweep);
+    }, 350);
+  }
+
 })();

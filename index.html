@@ -93,13 +93,19 @@
         </div>
 
         <div class="about__head">
-          <p class="about__kicker reveal" style="--d:.05s">
-            A TECH ENTHUSIAST<br />WHO SHIPS.
-          </p>
-          <h2 class="about__title display reveal" style="--d:.1s">
-            <span class="mask"><span class="mask__i">ABOUT</span></span>
-            <span class="mask"><span class="mask__i outline">ME</span></span>
-          </h2>
+          <!-- Dark Target Heading that gets illuminated by flashlight cursor -->
+          <div class="about__head-content" id="aboutHeadContent">
+            <p class="about__kicker reveal" style="--d:.05s">
+              A TECH ENTHUSIAST<br />WHO SHIPS.
+            </p>
+            <h2 class="about__title display reveal" style="--d:.1s">
+              <span class="mask"><span class="mask__i">ABOUT</span></span>
+              <span class="mask"><span class="mask__i outline">ME</span></span>
+            </h2>
+          </div>
+
+          <!-- Ambient flashlight glow centered on cursor -->
+          <div class="flashlight-glow" id="flashlightGlow" aria-hidden="true"></div>
         </div>
 
         <div class="about__grid">
