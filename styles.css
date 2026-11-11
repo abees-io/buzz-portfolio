@@ -984,6 +984,16 @@ html:not(.js) .mask__i { transform: none; }
   font-weight: 300;
 }
 .about__lead { color: var(--cream); font-weight: 500; }
+.about__highlight {
+  color: var(--cream);
+  font-weight: 500;
+  border-bottom: 1px dashed rgba(255, 106, 18, 0.45);
+  padding-bottom: 1px;
+}
+.about__highlight--accent {
+  color: #ff914d;
+  font-weight: 500;
+}
 
 .about__facts {
   display: grid;
