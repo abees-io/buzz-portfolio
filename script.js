@@ -438,4 +438,252 @@
     }, 350);
   }
 
+
+  /* -----------------------------------------------------------
+     PORTRAIT AVATAR STONE DROP & EARTHQUAKE IMPACT FX
+     ----------------------------------------------------------- */
+  function initAvatarStoneDrop() {
+    const avatar = document.querySelector('.avatar');
+    if (!avatar) return;
+
+    let hasDropped = false;
+
+    function dropPortrait() {
+      if (hasDropped) return;
+      hasDropped = true;
+
+      // Absolute coordinates on the full document page
+      const rect = avatar.getBoundingClientRect();
+      const pageX = rect.left + window.scrollX;
+      const pageY = rect.top + window.scrollY;
+
+      // Completely remove / hide portrait from the original place
+      avatar.style.visibility = 'hidden';
+
+      // Create falling portrait stone in absolute document coordinates
+      const stone = document.createElement('div');
+      stone.className = 'falling-stone';
+      stone.style.width = rect.width + 'px';
+      stone.style.height = rect.height + 'px';
+      stone.style.left = pageX + 'px';
+      stone.style.top = pageY + 'px';
+
+      const img = avatar.querySelector('img');
+      if (img && img.src) {
+        const cloneImg = document.createElement('img');
+        cloneImg.src = img.src;
+        cloneImg.alt = img.alt || 'Avatar';
+        stone.appendChild(cloneImg);
+      } else {
+        const monogram = avatar.querySelector('.avatar__monogram');
+        if (monogram) {
+          stone.innerHTML = '<span class="avatar__monogram" style="display:grid;place-items:center;height:100%;font-family:var(--font-display);color:var(--cream);background:#1a1420;">AP</span>';
+        }
+      }
+
+      document.body.appendChild(stone);
+
+      function getDocHeight() {
+        return Math.max(
+          document.body.scrollHeight,
+          document.documentElement.scrollHeight,
+          document.body.offsetHeight,
+          document.documentElement.offsetHeight
+        );
+      }
+
+      function getDocWidth() {
+        return Math.max(
+          document.body.scrollWidth,
+          document.documentElement.scrollWidth,
+          document.body.offsetWidth,
+          document.documentElement.offsetWidth
+        );
+      }
+
+      // Physics variables
+      let posX = pageX;
+      let posY = pageY;
+      let velX = (Math.random() - 0.5) * 1.5;
+      let velY = 0;
+      let gravity = 1.35;
+      let rotation = 0;
+      let rotSpeed = 3.2;
+      let bounceCount = 0;
+      let isInitialDrop = true;
+      let isDragging = false;
+      let dragStartX = 0;
+      let dragStartY = 0;
+      let lastDragX = 0;
+      let lastDragY = 0;
+      let lastDragTime = 0;
+      let animFrameId = null;
+      let lastTime = performance.now();
+
+      function triggerSubtleGroundShake() {
+        document.body.classList.remove('ground-impact');
+        void document.body.offsetWidth;
+        document.body.classList.add('ground-impact');
+        setTimeout(() => document.body.classList.remove('ground-impact'), 300);
+      }
+
+      function physicsLoop(now) {
+        if (isDragging) return;
+
+        const dt = Math.min((now - lastTime) / 16.67, 2.0);
+        lastTime = now;
+
+        velY += gravity * dt;
+        posX += velX * dt;
+        posY += velY * dt;
+        rotation += rotSpeed * dt;
+
+        const stoneWidth = rect.width;
+        const stoneHeight = rect.height;
+        const targetY = getDocHeight() - stoneHeight - 12;
+        const maxX = getDocWidth() - stoneWidth - 8;
+        const minX = 8;
+
+        // Wall collisions
+        if (posX <= minX) {
+          posX = minX;
+          velX = -velX * 0.6;
+          rotSpeed = -rotSpeed * 0.7;
+        } else if (posX >= maxX) {
+          posX = maxX;
+          velX = -velX * 0.6;
+          rotSpeed = -rotSpeed * 0.7;
+        }
+
+        // Floor collision
+        if (posY >= targetY) {
+          posY = targetY;
+
+          // Trigger subtle shake only on initial ground impact or heavy throw down
+          if (isInitialDrop || Math.abs(velY) > 8) {
+            triggerSubtleGroundShake();
+            isInitialDrop = false;
+          }
+
+          bounceCount++;
+          velY = -velY * 0.42; // bounce damping
+          velX = velX * 0.88;  // ground friction
+          rotSpeed = velX * 1.8;
+
+          // Come to rest if velocity is very small
+          if (Math.abs(velY) < 1.2 && Math.abs(velX) < 0.25) {
+            velY = 0;
+            velX = 0;
+            rotSpeed = 0;
+            stone.style.left = posX.toFixed(1) + 'px';
+            stone.style.top = targetY + 'px';
+            stone.style.transform = 'rotate(' + (rotation % 360).toFixed(1) + 'deg)';
+            return; // stop physics loop until grabbed again
+          }
+        }
+
+        stone.style.left = posX.toFixed(1) + 'px';
+        stone.style.top = posY.toFixed(1) + 'px';
+        stone.style.transform = 'rotate(' + rotation.toFixed(1) + 'deg)';
+        animFrameId = requestAnimationFrame(physicsLoop);
+      }
+
+      // Drag / Throw Handlers (Mouse & Touch)
+      function onPointerDown(e) {
+        isDragging = true;
+        stone.classList.add('is-dragging');
+        if (animFrameId) cancelAnimationFrame(animFrameId);
+
+        const pageClientX = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
+        const pageClientY = (e.touches && e.touches[0]) ? e.touches[0].clientY : e.clientY;
+
+        const pageMouseX = pageClientX + window.scrollX;
+        const pageMouseY = pageClientY + window.scrollY;
+
+        dragStartX = pageMouseX - posX;
+        dragStartY = pageMouseY - posY;
+
+        lastDragX = pageMouseX;
+        lastDragY = pageMouseY;
+        lastDragTime = performance.now();
+
+        velX = 0;
+        velY = 0;
+        rotSpeed = 0;
+
+        window.addEventListener('mousemove', onPointerMove, { passive: false });
+        window.addEventListener('touchmove', onPointerMove, { passive: false });
+        window.addEventListener('mouseup', onPointerUp);
+        window.addEventListener('touchend', onPointerUp);
+        window.addEventListener('touchcancel', onPointerUp);
+      }
+
+      function onPointerMove(e) {
+        if (!isDragging) return;
+        if (e.cancelable && e.type === 'touchmove') {
+          e.preventDefault(); // prevent scrolling while flinging the stone
+        }
+
+        const pageClientX = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
+        const pageClientY = (e.touches && e.touches[0]) ? e.touches[0].clientY : e.clientY;
+
+        const currentMouseX = pageClientX + window.scrollX;
+        const currentMouseY = pageClientY + window.scrollY;
+
+        const now = performance.now();
+        const dt = Math.max(now - lastDragTime, 8);
+
+        // Velocity tracking for realistic release fling / throw
+        velX = ((currentMouseX - lastDragX) / dt) * 16.67;
+        velY = ((currentMouseY - lastDragY) / dt) * 16.67;
+
+        // Clamp excessive throw speed
+        velX = Math.max(Math.min(velX, 35), -35);
+        velY = Math.max(Math.min(velY, 35), -35);
+
+        rotSpeed = velX * 1.5;
+
+        posX = currentMouseX - dragStartX;
+        posY = currentMouseY - dragStartY;
+
+        rotation += rotSpeed * 0.2;
+
+        stone.style.left = posX.toFixed(1) + 'px';
+        stone.style.top = posY.toFixed(1) + 'px';
+        stone.style.transform = 'rotate(' + rotation.toFixed(1) + 'deg)';
+
+        lastDragX = currentMouseX;
+        lastDragY = currentMouseY;
+        lastDragTime = now;
+      }
+
+      function onPointerUp() {
+        if (!isDragging) return;
+        isDragging = false;
+        stone.classList.remove('is-dragging');
+
+        window.removeEventListener('mousemove', onPointerMove);
+        window.removeEventListener('touchmove', onPointerMove);
+        window.removeEventListener('mouseup', onPointerUp);
+        window.removeEventListener('touchend', onPointerUp);
+        window.removeEventListener('touchcancel', onPointerUp);
+
+        // Resume physics with throw momentum
+        bounceCount = 0;
+        lastTime = performance.now();
+        animFrameId = requestAnimationFrame(physicsLoop);
+      }
+
+      stone.addEventListener('mousedown', onPointerDown);
+      stone.addEventListener('touchstart', onPointerDown, { passive: false });
+
+      // Start initial drop
+      animFrameId = requestAnimationFrame(physicsLoop);
+    }
+
+    avatar.addEventListener('click', dropPortrait);
+  }
+
+  initAvatarStoneDrop();
+
 })();
